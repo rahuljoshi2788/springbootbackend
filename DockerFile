@@ -1,0 +1,9 @@
+FROM openjdk:8  
+
+ADD target/project1backend/target/project1backend-0.0.1-SNAPSHOT.jar jenkins-docker-aws.jar 
+EXPOSE 8081   
+EXPOSE 8082
+
+ENTRYPOINT ["java","-jar","jenkins-docker-aws.jar"]
+
+ 
