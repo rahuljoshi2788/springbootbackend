@@ -35,6 +35,8 @@ public class CarController {
 	@GetMapping(value="allcars")
 	public List<Cars> getAllCars(){
 			System.out.println("Get Called");
+			System.out.println("Get Called Twice");
+			
 			return cr.findAll();
 		
 	}
