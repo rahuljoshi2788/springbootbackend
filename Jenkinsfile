@@ -43,10 +43,10 @@ pipeline { // root
             }
         }
 
-        stage('deploy on master'){  // if branch is master then run the docker image on 8081
+        stage('deploy on main'){  // if branch is master then run the docker image on 8081
 
          when{
-                expression{ env.GIT_BRANCH =='origin/master'}
+                expression{ env.GIT_BRANCH =='origin/main'}
               }
                     steps {
                             echo 'pulling ..'+ env.GIT_BRANCH
