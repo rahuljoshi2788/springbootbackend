@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.data.rest.spring_data_demo.exceptions.BookNotFoundException;
+import com.example.demo.Exceptions.UsernameNotFound;
 import com.example.demo.Model.Tasks;
 import com.example.demo.Model.User;
 import com.example.demo.repository.TaskRepo;
@@ -55,7 +57,7 @@ void m1() {
 }
 	
 @PostMapping(value="/login")
-public String confirmation(@RequestBody User user) {
+public String confirmation(@RequestBody User user) throws UsernameNotFound {
 	
 	System.out.println("In Web Service");
 	String uname=user.getUsername();
@@ -63,12 +65,13 @@ public String confirmation(@RequestBody User user) {
 	
 	User checkuser=ulogin.findByUsernameAndPassword(uname, pword);
 	
+	
 
 	
 	
 	if(checkuser == null)
 	{
-		return "Failed";
+		throw new UsernameNotFound(user.getUsername());
 	}
 	
 	String s1=checkuser.getName();
@@ -77,6 +80,15 @@ public String confirmation(@RequestBody User user) {
 	
 	
 }
+
+//@PostMapping(value="checkuser")
+//public User checkUser(@RequestBody User user) {
+//	
+//	
+//	return ulogin.findById(user.getId()).orElseThrow(()->new UsernameNotFound(user.getId())); 
+//	
+//	
+//}
 
 
 @PostMapping(value="/register")

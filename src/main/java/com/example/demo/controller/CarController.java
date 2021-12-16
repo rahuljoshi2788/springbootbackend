@@ -37,6 +37,8 @@ public class CarController {
 			System.out.println("Get Called");
 			System.out.println("Get Called Twice");
 			
+			System.out.println(cr.findAll().size());
+			
 			return cr.findAll();
 		
 	}
@@ -52,12 +54,13 @@ public class CarController {
 	}
 	
 	@GetMapping(value="getcar/{id}")
-	public Optional<Cars> getCar(@PathVariable Integer id)
+	public Optional<Cars> getCar(@PathVariable Integer id) throws Exception
 	
 	{
-		return cr.findById(id);
-			
+		Optional<Cars> c1= Optional.of(cr.findById(id).orElseThrow(()->new Exception("Cannot")));
 		
+		
+		return c1;
 	}
 	
 

@@ -21,6 +21,9 @@ public interface UserLogin extends JpaRepository<User,Integer> {
 	
 	//custom method
 	User findByUsernameAndPassword(String uname,String pword);
+	
+//	@Query(value="select * from user",nativeQuery = true)
+//	List<User> isPersonExistById();
 
 	
 	
